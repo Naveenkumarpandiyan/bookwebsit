@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Learning Website</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Book Learning Platform</h1>
+      <p>Discover authors and their books</p>
+    </header>
+
+    <main>
+      <!-- Authors Section -->
+      <section id="authors">
+        <h2>Authors</h2>
+        <div class="author-list">
+          <div class="author-card" onclick="showBooks(1)">
+            <img src="author1.jpg" alt="Shakespeare" />
+            <h4>Shakespeare</h4>
+            <h5>Baptized: <br>April 26, 1564, Stratford-upon-Avon, Warwickshire, England<br>
+                Died:<br> April 23, 1616, Stratford-upon-Avon<br>
+                Notable Works:<br> “A Midsummer Night’s Dream” “All’s Well That Ends Well” </h5>
+          </div>
+          <div class="author-card" onclick="showBooks(2)">
+            <img src="author2.jpg" alt="George Orwell" />
+            <h4>George Orwell</h4>
+            <h5>Born:<br> June 25, 1903, Motihari, Bengal, India<br>
+                Died:<br> January 21, 1950, London, England (aged 46)</h5>
+          </div>
+          <div class="author-card" onclick="showBooks(3)">
+            <img src="bharathiyar.jpg" alt="மகாகவி பாரதி" />
+            <h4>மகாகவி பாரதி</h4>
+            <h5>Born:<br>	11 December 1882<br>
+                Died:	<br>12 September 1921 (aged 38)<br>
+              Other names	Bharatiyar, Subbaiah, <br>
+              Sakthi Dasan, Mahakavi, <br>Mundasu Kavignar, Veera Kavi</h5>
+          </div>
+          <div class="author-card" onclick="showBooks(4)">
+            <img
+              src="ramalingam.jpeg"
+              alt="நாமக்கல் கவிஞர் வெ. இராமலிங்கம் பிள்ளை"
+            />
+            <h4>நாமக்கல் கவிஞர் வெ. இராமலிங்கம் பிள்ளை</h4>
+            <h5>Namakkal V. Ramalingam Pillai (1888–1972) was a <br>
+              prominent freedom fighter from Namakkal.<br>
+               Ramalingam was born into the Chozhia Vellalar community.</h5>
+          </div>
+        </div>
+      </section>
+
+      <!-- Books Section -->
+      <section id="books" style="display: none">
+        <h2>Books by <span id="author-name"></span></h2>
+        <ul id="book-list"></ul>
+        <button onclick="goBack()">Back to Authors</button>
+      </section>
+
+      <!-- Book Details Section -->
+      <section id="book-details" style="display: none">
+        <h2>Book Details</h2>
+        <p><strong>Title:<br></Title:br> </strong> <span id="book-title"></span></p>
+        <p>
+          <strong>Description:<br> </strong> <span id="book-description"></span>
+        </p>
+        <p>
+          <button onclick="goBackToBooks()">Back to Books</button>
+        </p>
+      </section>
+    </main>
+
+    <script>
+      // Sample data for authors and books
+      const authors = [
+        {
+          id: 1,
+          name: "Shakespeare",
+          books: [
+            {
+              title: "Hamlet",
+              description:
+                "The Tragedy of Hamlet, Prince of Denmark, often shortened to Hamlet, is a tragedy written by William Shakespeare sometime between 1599 and 1601. It is Shakespeare's longest play",
+            },
+            {
+              title: "The Merchant of Venice",
+              description:
+                "The Merchant of Venice is a play by William Shakespeare, believed to have been written between 1596 and 1598. A merchant in Venice named Antonio defaults on a large loan taken out on behalf of his dear friend, Bassanio, and provided by a Jewish moneylender, Shylock, with seemingly inevitable fatal consequences.",
+            },
+            {
+              title: "King Lear",
+              description:
+                "The Tragedy of King Lear, often shortened to King Lear, is a tragedy written by William Shakespeare. It is loosely based on the mythological Leir of Britain. King Lear, in preparation for his old age, divides his power and land between his daughters Goneril and Regan, who pay homage to gain favour, feigning love. ",
+            },
+            {
+              title: "The Tragedie of Macbeth",
+              description:
+                "The Tragedy of Macbeth, often shortened to Macbeth, is a tragedy by William Shakespeare, estimated to have been first performed in 1606. It dramatises the physically violent and damaging psychological effects of political ambitions and power.",
+            },
+            {
+              title: "Romeo and Juliet",
+              description:
+                "The Tragedy of Romeo and Juliet, often shortened to Romeo and Juliet, is a tragedy written by William Shakespeare early in his career about the romance between two Italian youths from feuding families. ",
+            },
+          ],
+        },
+        {
+          id: 2,
+          name: "George Orwell",
+          books: [
+            {
+              title: "Nineteen Eighty-Four",
+              description:
+                "Nineteen Eighty-Four (also published as 1984) is a dystopian novel and cautionary tale by English writer George Orwell. It was published on 8 June 1949 by Secker & Warburg as Orwell's ninth and final book completed in his lifetime",
+            },
+            {
+              title: "Animal Farm",
+              description:
+                "Animal Farm is a satirical allegorical novella, in the form of a beast fable,[1] by George Orwell, first published in England on 17 August 1945.[2][3] It tells the story of a group of anthropomorphic farm animals who rebel against their human farmer, hoping to create a society where the animals can be equal, free, and happy.",
+            },
+            {
+              title: "Homage to Catalonia",
+              description:
+                "Homage to Catalonia is a 1938 memoir by English writer George Orwell, in which he accounts his personal experiences and observations while fighting in the Spanish Civil War.",
+            },
+            {
+              title: "Down and Out in Paris and London",
+              description:
+                "Down and Out in Paris and London is the first full-length work by the English author George Orwell, published in 1933. It is a memoir[2] in two parts on the theme of poverty in the two cities. Its target audience was the middle- and upper-class members of society—those who were more likely to be well educated—and it exposes the poverty existing in two prosperous cities: Paris and London.",
+            },
+            {
+              title: "Burmese Days",
+              description:
+                "Burmese Days is the first novel by English writer George Orwell, published in 1934. Set in British Burma during the waning days of empire, when Burma was ruled from Delhi as part of British India, the novel serves",
+            },
+          ],
+        },
+        {
+          id: 3,
+          name: "மகாகவி பாரதி",
+          books: [
+            {
+              title: "Panjali Sabatham",
+              description:
+                "Panchali Sabatham (Tamil: பாஞ்சாலி சபதம், lit. 'Panchali's Vow') is a Tamil epic by the poet Subramania Bharati.[1] The poem retells the events of the episode of the game of dice from the Mahabharata. Bharati uses the incidents from the Mahabharata to draw parallels with the Kurukshetra War and the Indian War of Independence and Panchali (Draupadi) with Bharata Mata.",
+            },
+            {
+              title: "Subramania Bharati",
+              description:
+                "The Sparrow was a poem written by Subramania Bharati who was born in the Tirunelveli district of Tamil Nadu. The poem manifests his longing for independence for the country and for his own spiritual liberation.",
+            },
+            {
+              title: "Theiva Paadalgal",
+              description:
+                "Chinnaswami Subramania Bharathi was an Indian writer, poet, journalist, Indian independence activist and social reformer from Tamil Nadu, India. Popularly known as Mahakavi Bharathiyar, he is a pioneer of modern Tamil poetry and is considered one among the greatest of Tamil literary figures of all time. His numerous works were fiery songs kindling patriotism and nationalism during Indian Independence movement.",
+            },
+            {
+              title: "Thesiya Padalgal",
+              description:
+                "Thesiya Padalgal, Subramaniya Bharathiyar is a collection of songs written by Subramania Bharathiar. The book was first published on December 25, 2013.",
+            },
+            {
+              title: "Bharathiyar Kavidhaigal ",
+              description:
+                "மகாகவி சுப்பிரமணிய பாரதியாரின் சில கவிதைகளின் பெயர்கள்: பாமாலை, பக்திப் பாடல்கள், விநாயகர் நான்மணி மாலை, தோத்திரப் பாடல்கள், சரசுவதி தோத்திரம், லக்ஷ்மி பிரார்த்தனை.",
+            },
+          ],
+        },
+        {
+          id: 4,
+          name: "நாமக்கல் கவிஞர் வெ. இராமலிங்கம் பிள்ளை",
+          books: [
+            {
+              title: "Avalum Avanum",
+              description:
+                "எளிய பதங்கள், எளிய நடை, எளிதில் அறிந்துகொள்ளக்கூடிய சந்தம், பொது ஜனங்கள் விரும்பும் மெட்டு இவற்றினையுடைய கவிதைகளே நந் தமிழ் நாட்டிற்குத் தற்போது வேண்டுவன. கவிதைகளைப் படித்து ரசிக்க வேண்டும் என்ற ஆர்வமும், கவிதைகளின் உட்கருத்துகளை ஆய்ந்து அனுபவிக்கக்கூடிய ஆற்றலும் நம் தமிழர்களிடையே மிகுந்தெழுந்தோங்கியிருக்கும் இக்காலத்தில் தமிழகத்துள்ளோர் அனைவர் உள்ளத்தையும் கருத்தையும் ஒருங்கே கவரும் 'அவனும் அவளும் என்னும் இக்காவிய நூலைக் காந்தியக் கவிஞர் நாமக்கல் வெ. இராமலிங்கம் பிள்ளையவர்கள் தமிழ் மக்கள் படித்து ரசித்து இன்புறுதற்கு அளித்துள்ளார்கள். இந்நூல் முன்னமேயே தமிழன்பர்களின் பேராதரவைப் பெற்றுள்ளது.",
+            },
+            {
+              title: "மலைக்கள்ளன்",
+              description:
+                "நாமக்கல் கவிஞர் வெ. இராமலிங்கம் பிள்ளை 1931-ல் சத்யாக்கிரகப் போராட்டத்தில் ஈடுபட்டு ஓராண்டு திருச்சி சிறையில் இருந்தபோது இந்நாவலை எழுதியதாக இதன் முன்னுரையில் குறிப்பிடுகிறார். இந்நாவலை இரண்டு முன்னுதாரணங்களைக் கொண்டு எழுதினார். கல்கி எழுதிய கள்வனின் காதலி மற்றும் ரஷ்யக் கவிஞர் அலக்ஸாண்டர் புஷ்கின் எழுதிய துப்ரோவ்ஸ்கி என்னும் நாவல். வடலிவிளை செம்புலிங்கம் போன்ற கொள்ளையர் பற்றிய கதைப்பாடல்கள் அன்று மக்களிடம் புழக்கத்தில் இருந்தன. அவற்றின் கூறுமுறையை அடியொற்றியது இந்நாவல்.",
+            },
+            {
+              title: "Tamizh Pattru",
+              description: "இந்த புத்தகம் பற்றிய தகவல்கள் விரைவில்...",
+            },
+            {
+              title: "Namakkal Kavignar kavithaigal",
+              description: "இந்த புத்தகம் பற்றிய தகவல்கள் விரைவில்...",
+            },
+            {
+              title: "தமிழன் இதயம் கவிதைகள்",
+              description: "இந்த புத்தகம் பற்றிய தகவல்கள் விரைவில்...",
+            },
+          ],
+        },
+      ];
+
+      function showBooks(authorId) {
+        const author = authors.find((a) => a.id === authorId);
+        document.getElementById("author-name").textContent = author.name;
+
+        const bookList = document.getElementById("book-list");
+        bookList.innerHTML = "";
+
+        author.books.forEach((book, index) => {
+          const listItem = document.createElement("li");
+          listItem.textContent = book.title;
+          listItem.onclick = () => showBookDetails(authorId, index);
+          bookList.appendChild(listItem);
+        });
+
+        document.getElementById("authors").style.display = "none";
+        document.getElementById("books").style.display = "block";
+      }
+
+      function showBookDetails(authorId, bookIndex) {
+        const book = authors.find((a) => a.id === authorId).books[bookIndex];
+        document.getElementById("book-title").textContent = book.title;
+        document.getElementById("book-description").textContent =
+          book.description;
+
+        document.getElementById("books").style.display = "none";
+        document.getElementById("book-details").style.display = "block";
+      }
+
+      function goBack() {
+        document.getElementById("books").style.display = "none";
+        document.getElementById("authors").style.display = "block";
+      }
+
+      function goBackToBooks() {
+        document.getElementById("book-details").style.display = "none";
+        document.getElementById("books").style.display = "block";
+      }
+    </script>
+  </body>
+</html>
